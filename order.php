@@ -43,7 +43,7 @@
     <section class="food-search">
         <div class="container">
             
-            <h2 class="text-center text-white">Fill this form to confirm your order.</h2>
+            <h2 class="text-center text-main">Fill this form to confirm your order.</h2>
 
             <form action="" method="POST" class="order">
                 <fieldset>
@@ -120,10 +120,10 @@
 
                     $status = "Ordered"; //Ordered, on delivery, delivered, cancelled
 
-                    $customer_name = $_POST['full-name'];
-                    $customer_contact = $_POST['contact'];
-                    $customer_email = $_POST['email'];
-                    $customer_address = $_POST['address'];
+                    $customer_name = mysqli_real_escape_string($conn, $_POST['full-name']);
+                    $customer_contact = mysqli_real_escape_string($conn, $_POST['contact']);
+                    $customer_email = mysqli_real_escape_string($conn, $_POST['email']);
+                    $customer_address = mysqli_real_escape_string($conn, $_POST['address']);
 
                     //Save the order in database
                     //Create SQL to save the data
@@ -147,13 +147,17 @@
                     if($res2==TRUE)
                     {
                         //query executed and order saved 
-                        $_SESSION['order'] = "<div class='success text-center'>Your order is now being prepared!</div>";
+                        $_SESSION['order'] = "<div class='success'> Your order 
+                        <span style='color: #ec217b'>$food</span> is now being prepared! Please check your E-mail or Text Messages for further information!
+                        </div>";
                         header('location:'.SITEURL);
                     }
                     else
                     {
                         //Failed to save order
-                        $_SESSION['order'] = "<div class='error text-center'>There has been an error with your order</div>";
+                        $_SESSION['order'] = "<div class='error'> There has been an error with your order 
+                        <span style='color: #ec217b'>$food</span>. Please try again or contact us!
+                        </div>";
                         header('location:'.SITEURL);
                     }
                 }
@@ -163,5 +167,11 @@
         </div>
     </section>
     <!-- fOOD sEARCH Section Ends Here -->
+
+    <div class="loader">
+        <img src="images/imageload.png" alt="Loading..." />
+    </div>
+
+<script src="js/script.js"></script>
 
 <?php include('partials-front/footer.php'); ?>    

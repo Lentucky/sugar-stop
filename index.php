@@ -19,6 +19,13 @@
             echo $_SESSION['order'];
             unset($_SESSION['order']);
         }
+
+        if(isset($_SESSION['contact']))
+        {
+            echo $_SESSION['contact'];
+            unset($_SESSION['contact']);
+        }
+
     ?>
 
     <!-- CAtegories Section Starts Here -->
@@ -183,7 +190,7 @@
         <img src="images/imageload.png" alt="Loading..." />
     </div>
 
-    <script src="script.js"></script>
 
+<script src="js/script.js"></script>
 
 <?php include('partials-front/footer.php'); ?>    
