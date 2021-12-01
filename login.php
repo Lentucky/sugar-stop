@@ -2,6 +2,16 @@
     <section class="food-search">
         <div class="container">
 
+            <?php
+            
+            if(isset($_SESSION['no-login']))
+                {
+                    echo $_SESSION['no-login'];
+                    unset($_SESSION['no-login']);
+                }
+            
+            ?>
+
                 <form action="config/login.inc.php" method="POST" class="order">           
                     <fieldset>
                         <legend>Log-In Details</legend>
@@ -11,7 +21,10 @@
 
                         <div class="order-label">Password</div>
                         <input type="password" name="pwd" placeholder="Password" class="input-responsive" required>
-     
+
+                        <div><a href="<?php echo SITEURL; ?>signup.php">Don't have an account?</a></div>
+                        <br>
+    
                         <button type="submit" name="submit" class="btn btn-primary">Login</button>
                     </fieldset>
 

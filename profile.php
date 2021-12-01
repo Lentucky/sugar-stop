@@ -1,53 +1,85 @@
 <?php include('partials-front/menu.php'); ?>    
 
     <?php 
-        if (isset($_SESSION["useruid"])){
+        //Create SQL query to get all the fucking users
+        $sql = "SELECT * FROM tbl_users";
 
-            //2. Create SQL Query to get the details
-            $sql="SELECT * FROM tbl_users";
+        //execute the query
+        $res = mysqli_query($conn, $sql);
 
-            //3. execute
-            $res=mysqli_query($conn, $sql);
+        //Count rows to check whether we have food or not
+        $count = mysqli_num_rows($res);
 
-            //4. Check
-            if($res==TRUE)
-            {
-                //Data is available or not
-                $count = mysqli_num_rows($res);
-                //Check wether if we have admin data or not
-                if($count==1)
+        if($count>0)
+        {
+                //We have food in database
+                //Get the food from database and display
+                while($row=mysqli_fetch_assoc($res))
                 {
-                    // Get the details
-                    // echo "Admin Avaidable";
-                    $row=mysqli_fetch_assoc($res);
+                        //get the value from the individual columns
+                        $id = $row['usersId'];
+                        $name = $row['usersName'];
+                        $email = $row['usersEmail'];
+                        $username = $row['usersUsername'];
+                }
 
-                    $id = $row['usersId'];
-                    $name = $row['usersName'];
-                    $email = $row['usersEmail'];
-                    $username = $row['usersUsername'];
-                }
-                else
-                {
-                    //Redirect to manage admiin page
-                    header('location:'.SITEURL);
-                }
-            }
-        }   
+        }
+
     ?>
+
+    <section class="categories">
+        <div class="container">
+                <h2 class="text-center">Account Details</h2>
+                    
+                    <div class="order-label">
+
+                        <p class="food-price"><?php echo $name?></p>
+                        <p class="food-price"><?php echo $email?></p>
+                        <p class="food-price"><?php echo $username?></p>
+
+                    </div>
+                        
+        </div>
+    </section>
 
     <section class="food-search">
         <div class="container">
-           
-                <fieldset>
-                    <legend>Contact Details</legend>
-                    <div class="order-label">
 
-                        <p class="food-price"><?php echo $username; ?></p>
+            <fieldset>
+                <legend>Order Details</legend>
 
-                    </div>
+                <?php 
+                    //Create SQL query to get all the fucking users
+                    $sql2 = "SELECT * FROM tbl_order1";
+
+                    //execute the query
+                    $res2 = mysqli_query($conn, $sql2);
+
+                    //Count rows to check whether we have food or not
+                    $count2 = mysqli_num_rows($res2);
+
+                    if($count2>0)
+                    {
+                            //We have food in database
+                            //Get the food from database and display
+                            while($row2=mysqli_fetch_assoc($res2))
+                            {
+                                    //get the value from the individual columns
+                                    $id = $row2['id'];
+                                    $food = $row2['food'];
+                                    $price = $row2['price'];
+                                    $qty = $row2['qty'];
+                                    $total = $row2['total'];
+                                    $order_date = $row2['order_date'];
+                                    $status = $row2['status'];
+                            }
+                    }
+
+                ?>
 
 
-                </fieldset>
+                    <p class="food-price"><?php echo $price;?></p>
+            </fieldset>
 
         </div>
     </section>
