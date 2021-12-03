@@ -78,7 +78,7 @@
                 ?>
 
 
-                    <p class="food-price"><?php echo $price;?></p>
+                    <p class="food-price"><?php echo $food;?></p>
             </fieldset>
 
         </div>

@@ -5,6 +5,8 @@ include('functions.inc.php');
 
 if (isset($_POST["submit"])) {
 
+    $_SESSION["loginUser"] = true;
+
     $username = $_POST["uid"];
     $pwd = $_POST["pwd"];
 
@@ -14,6 +16,9 @@ if (isset($_POST["submit"])) {
     }
 
     loginUser($conn, $username, $pwd);
+
+
+
 }
 else {
     header("location:".SITEURL."login.php");
