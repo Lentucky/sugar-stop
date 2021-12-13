@@ -1,7 +1,7 @@
 <?php 
 
     //include constants.php for URL
-    include('constants.php');
+    include('config/constants.php');
     //1.Destroy the Session
     session_unset();
     session_destroy(); //Unset $_SESSION['user']

@@ -2,7 +2,7 @@
 
     <?php 
         //Create SQL query to get all the fucking users
-        $sql = "SELECT * FROM tbl_users";
+        $sql = "SELECT * FROM tbl_users1 ";
 
         //execute the query
         $res = mysqli_query($conn, $sql);
@@ -17,10 +17,9 @@
                 while($row=mysqli_fetch_assoc($res))
                 {
                         //get the value from the individual columns
-                        $id = $row['usersId'];
-                        $name = $row['usersName'];
-                        $email = $row['usersEmail'];
-                        $username = $row['usersUsername'];
+                        $id = $row['id'];
+                        $username = $row['username'];
+                        $email = $row['email'];
                 }
 
         }
@@ -33,9 +32,8 @@
                     
                     <div class="order-label">
 
-                        <p class="food-price"><?php echo $name?></p>
-                        <p class="food-price"><?php echo $email?></p>
                         <p class="food-price"><?php echo $username?></p>
+                        <p class="food-price"><?php echo $email?></p>
 
                     </div>
                         

@@ -41,9 +41,9 @@
 
                     <?php
                     
-                        if (isset($_SESSION["useruid"])) {
+                        if (isset($_SESSION["loggedIn"])) {
                             echo "<li><a href='profile.php'>Profile</a></li>";
-                            echo "<li><a href='config/logout.inc.php'>Logout</a></li>";
+                            echo "<li><a href='logout.inc.php'>Logout</a></li>";
                         }
                         else {
                             echo "<li><a href='login.php'>Login</a></li>";

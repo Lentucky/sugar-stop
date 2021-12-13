@@ -14,6 +14,13 @@
     <!-- fOOD sEARCH Section Ends Here -->
 
     <?php 
+        
+        if(isset($_SESSION['userlogin']))
+        {
+            echo $_SESSION['userlogin'];
+            unset($_SESSION['userlogin']);
+        }
+
         if(isset($_SESSION['order']))
         {
             echo $_SESSION['order'];
