@@ -1,5 +1,6 @@
 <?php include('partials-front/menu.php'); ?>
 <?php include('partials-front/login-check.php'); ?>
+<?php ob_start(); ?>
 
     <?php 
         //Check whether food ID is set or not 
@@ -40,7 +41,7 @@
         }
     ?>
 
-    <!-- fOOD sEARCH Section Starts Here -->
+<!-- fOOD order Section Starts Here -->
     <section class="food-search">
         <div class="container">
             
@@ -79,25 +80,32 @@
                         <input type="hidden" name="price" value="<?php echo $price; ?>">
 
                         <div class="order-label">Quantity</div>
-                        <input type="number" name="qty" class="input-responsive" value="1" required>
-                        
+                        <input type="number" name="qty" class="input-responsive" value="1" required>                        
                     </div>
 
                 </fieldset>
                 
                 <fieldset>
                     <legend>Delivery Details</legend>
+                    <p>
+                        Disclaimer: Currently, our business is not able to accept credit or online transactions.
+                        We are only able to accept payment through <b>Cash on Delivery.</b> 
+                        Our business Is only able to make orders inside <b>San Pedro, Laguna</b>. 
+                        Any orders made outside of San Pedro City, will be automatically rejected, 
+                        so please do kindly fill the form properly without any mistakes.
+                    </p>
+
                     <div class="order-label">Full Name</div>
                     <input type="text" name="full-name" placeholder="E.g. John Doe" class="input-responsive" required>
 
                     <div class="order-label">Phone Number</div>
-                    <input type="tel" name="contact" placeholder="E.g. 0943xxxxxx" class="input-responsive" required>
+                    <input type="tel" name="contact" placeholder="E.g. 09xxxxxxxxx" class="input-responsive" required>
 
                     <div class="order-label">Email</div>
                     <input type="email" name="email" placeholder="E.g. johndoe@gmail.com" class="input-responsive" required>
 
                     <div class="order-label">Address</div>
-                    <textarea name="address" rows="10" placeholder="E.g. Street, Brgy, City" class="input-responsive" required></textarea>
+                    <textarea name="address" rows="10" placeholder="E.g. House No./Building No., Street No., Subdivision, Baranggay, City" class="input-responsive" required></textarea>
 
                     <input type="submit" name="submit" value="Confirm Order" class="btn btn-primary">
                 </fieldset>
@@ -114,6 +122,7 @@
                     $food = $_POST['food'];
                     $price = $_POST['price'];
                     $qty = $_POST['qty'];
+                    $userid = $_SESSION['loggedIn'];
 
                     $total = $price * $qty; //total is = price x qty
 
@@ -135,6 +144,7 @@
                         total = $total,
                         order_date = '$order_date',
                         status = '$status',
+                        userid = '$userid',
                         customer_name = '$customer_name',
                         customer_contact = '$customer_contact',
                         customer_email = '$customer_email',
@@ -152,6 +162,7 @@
                         <span style='color: #ec217b'>$food</span> is now being prepared! Please check your E-mail or Text Messages for further information!
                         </div>";
                         header('location:'.SITEURL);
+                        ob_end_flush(); 
                     }
                     else
                     {

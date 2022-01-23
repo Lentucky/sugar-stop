@@ -81,6 +81,7 @@
             //User exists and login success
             $_SESSION['userlogin'] = "<div class='success'>Login Successful</div>";
             $_SESSION['loggedIn'] = $username; //to check whether the user is logged in and logout will unset it
+           
 
             //Redirect to home page
             header('location:'.SITEURL);

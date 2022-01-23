@@ -19,6 +19,7 @@
         {
             echo $_SESSION['userlogin'];
             unset($_SESSION['userlogin']);
+
         }
 
         if(isset($_SESSION['order']))

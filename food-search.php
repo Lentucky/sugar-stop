@@ -95,7 +95,7 @@
                 <span style='color: #ec217b'>$search</span> 
                 </div>";
             }
-        
+        //remove the undefined array
         ?>
 
         

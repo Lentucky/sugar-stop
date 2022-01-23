@@ -80,6 +80,18 @@ a:hover{
     color: white;
     background-color: #ce1e6d9a;
 }
+
+.btn-remove{
+    background-color: #b12722;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-remove:hover{
+    background-color: #792718;
+}
+
 h2{
     color: #2f3542;
     font-size: 2rem;
@@ -88,20 +100,45 @@ h2{
 h3{
     font-size: 1.5rem;
 }
+
 .float-container{
     position: relative;
 }
+
 .float-text{
     position: absolute;
     bottom: 50px;
     left: 40%;
 }
+
+.fieldset{
+    border: 3px solid black;
+    margin: 5%;
+    padding: 3%;
+    border-radius: 20px;
+}
+
 fieldset{
     border: 3px solid black;
     margin: 5%;
     padding: 3%;
     border-radius: 20px;
 }
+
+table tr th{
+    border-bottom: 1px solid black;
+    padding: 1%;
+    text-align: left;
+}
+
+table tr td{
+    padding: 1%;
+}
+
+.tbl-full{
+    width: 100%;
+}
+
 legend{
     font-size: 150%;
     font-weight: bold;
@@ -239,6 +276,10 @@ legend{
     margin-bottom: 1%; 
     font-weight: bold;
 }
+.disclaimer{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 140%;
+}
 
 
 
@@ -264,6 +305,17 @@ legend{
     .btn{
         width: 91%;
         padding: 2%;
+    }
+
+    .btn-danger{
+        background-color: #b12722;
+        padding: 1%;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .btn-danger:hover{
+        background-color: #792718;
     }
 
     .food-search{

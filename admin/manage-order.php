@@ -99,6 +99,9 @@
                                         <td>
                                             <a href="<?php echo SITEURL; ?>admin/update-order.php?id=<?php echo $id; ?>" class="btn-secondary">Update Order</a>
                                         </td>
+                                        <td>
+                                            <a href="<?php echo SITEURL; ?>admin/delete-admin-order.php?id=<?php echo $id; ?>" class="btn-danger">Delete Order</a>
+                                        </td>
                                     </tr>
 
                                 <?php
