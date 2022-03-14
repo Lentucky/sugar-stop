@@ -54,6 +54,28 @@ table tr td{
     text-decoration: none;
     font-weight: bold;
 }
+
+.btn-report{
+    background-color: #5ecc63;
+    padding: 1%;
+    color: rgb(41, 41, 41);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.btn-colors{
+    background-color: #5ecc63;
+    padding: 1%;
+    color: rgb(41, 41, 41);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-report:hover{
+    background-color: #22793e;
+}
+
 .btn-secondary:hover{
     background-color: #22793e;
 }
@@ -87,6 +109,7 @@ table tr td{
 .menu ul li{
     display: inline;
     padding: 1%;
+    font-size: 25px;
 }
 .menu ul li a{
     text-decoration: none;
@@ -111,6 +134,17 @@ table tr td{
     float: left;
 }
 
+/* for sales */
+.select-sales{
+    width: 250px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.Sales-size{
+    font-weight: bold;
+    font-size: 20px;
+}
 
 /* footer*/
 .footer{

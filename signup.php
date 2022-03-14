@@ -28,54 +28,71 @@
 <?php include('partials-front/footer.php'); ?>    
 
 <?php 
-    
     //process the value form and save it in the database
 
     //Check if submit button is clicked or not
 
-    if(isset($_POST['submit']))
-    {
         // button clicked
         //echo "Button clicked";
 
         //get the data from the form
-        $username = mysqli_real_escape_string($conn, $_POST["username"]);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
 
-        $raw_password = md5($_POST["password"]);
-        $password = mysqli_real_escape_string($conn, $raw_password);
-
-        //to save to database
-        $sql = "INSERT INTO tbl_users1 SET
-            username = '$username',
-            email = '$email',
-            password = '$password'
-        ";
-       
-
-        // Executing quer and saving data to database
-        $res = mysqli_query($conn, $sql) or die(mysqli_error());
-
-        //check whether the data is inserted or not 
-        if($res==TRUE)
+        $username = "";
+        $email = "";
+        if(isset($_POST['submit']))
         {
-            //Data inserted
-            //echo "Data Inserted";
-            //Create a variable to display
-            $_SESSION['signup'] = "<div class='success'>Admin Added Succesfully</div>";
-            
-            //redirect page to manage admin
-            header("location:".SITEURL.'login.php');
-        }
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $sql_u = "SELECT * FROM tbl_users1 WHERE username='$username'";
+            $sql_e = "SELECT * FROM tbl_users1 WHERE email='$email'";
+            $res_u = mysqli_query($conn, $sql_u);
+            $res_e = mysqli_query($conn, $sql_e);
+
+            if (mysqli_num_rows($res_u) > 0) {
+                echo"Sorry... username already taken"; 	
+            }else if(mysqli_num_rows($res_e) > 0){
+                echo"Sorry... email already taken"; 
+            }
         else
-        {
-            //Failed
-            //echo "Error";
-            $_SESSION['signup'] = "Admin Failed to Process";
-            
-            //redirect page to add admin
-            header("location:".SITEURL.'login.php');
-        }
+        { 
 
+            $raw_password = md5($_POST["password"]);
+            $password = mysqli_real_escape_string($conn, $raw_password);
+
+            //to save to database
+            $sql2 = "INSERT INTO tbl_users1 SET
+                username = '$username',
+                email = '$email',
+                password = '$password'
+            ";
+        
+
+            // Executing quer and saving data to database
+            $res2 = mysqli_query($conn, $sql2) or die(mysqli_error());
+
+            //check whether the data is inserted or not 
+            if($res2==TRUE)
+            {
+                //Data inserted
+                //echo "Data Inserted";
+                //Create a variable to display
+                $_SESSION['signup'] = "<div class='success'>Admin Added Succesfully</div>";
+                
+                //redirect page to manage admin
+                header("location:".SITEURL.'login.php');
+            }
+            else
+            {
+                //Failed
+                //echo "Error";
+                $_SESSION['signup'] = "Admin Failed to Process";
+                
+                //redirect page to add admin
+                header("location:".SITEURL.'login.php');
+            }
+
+        }
     }
 ?>

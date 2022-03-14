@@ -70,7 +70,7 @@
 
                 <?php 
                     //Create SQL query to get all the fucking users
-                    $sql2 = "SELECT * FROM tbl_order1 where userid='" . $_SESSION['loggedIn'] . "'";
+                    $sql2 = "SELECT * FROM tbl_order1 where status in ('Ordered','Delivery') AND userid='" . $_SESSION['loggedIn'] . "'";
                     //execute the query
                     $res2 = mysqli_query($conn, $sql2);
 

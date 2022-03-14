@@ -1,0 +1,53 @@
+<form action="" method="POST" enctype="multipart/form-data" id="foodform">
+
+            <br><br>
+
+            <h3>Select date:</h3>
+            <br>
+            <select id="foodlist" name="foodlist" form="foodform" class="select-sales">
+                
+                <?php 
+                    //Create PHP Code to display categories from Database
+                    //1. CReate SQL to get all active categories from database
+                    $sql = "SELECT * FROM tbl_food1";
+                    
+                    //Executing qUery
+                    $res = mysqli_query($conn, $sql);
+
+                    //Count Rows to check whether we have categories or not
+                    $count = mysqli_num_rows($res);
+
+                    //IF count is greater than zero, we have categories else we donot have categories
+                    if($count>0)
+                    {
+                        //WE have categories
+                        while($row=mysqli_fetch_assoc($res))
+                        {
+                            //get the details of categories
+                            $id = $row['id'];
+                            $title = $row['title'];
+
+                            ?>
+
+                            <option value="<?php echo $id; ?>"><?php echo $title; ?></option>
+
+                            <?php
+                        }
+                    }
+                    else
+                    {
+                        //WE do not have category
+                        ?>
+                        <option value="0">No Food Found</option>
+                        <?php
+                    }
+                
+
+                    //2. Display on Drpopdown
+                ?>
+
+            </select>
+
+            <input type="submit" value="GetData" name="submit">
+
+        </form>

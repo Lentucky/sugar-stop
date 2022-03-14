@@ -42,7 +42,7 @@
     ?>
 
 <!-- fOOD order Section Starts Here -->
-    <section class="food-search">
+    <section class="order-bg">
         <div class="container">
             
             <h2 class="text-center text-main">Fill this form to confirm your order.</h2>
@@ -87,13 +87,14 @@
                 
                 <fieldset>
                     <legend>Delivery Details</legend>
-                    <p>
-                        Disclaimer: Currently, our business is not able to accept credit or online transactions.
-                        We are only able to accept payment through <b>Cash on Delivery.</b> 
-                        Our business Is only able to make orders inside <b>San Pedro, Laguna</b>. 
-                        Any orders made outside of San Pedro City, will be automatically rejected, 
-                        so please do kindly fill the form properly without any mistakes.
-                    </p>
+                    <p class="disclaimer">Our Policies</p>
+                    <ul class="disclaimer-list">
+                        <li>Currently, our business is not able to accept credit or online transactions. </li>
+                        <li>We are only able to accept payment through Cash on Delivery.</li>
+                        <li>Our business Is only able to make orders inside San Pedro, Laguna. Any orders made outside of San Pedro City, will be automatically rejected, so please do kindly fill the form properly without any mistakes.</li>
+                        <li>Additionally, there will be a 1 hour time window in which the order can be recalled after being placed, once this window has passed, the order is considered final and is no longer refundable</li>
+
+                    </ul>
 
                     <div class="order-label">Full Name</div>
                     <input type="text" name="full-name" placeholder="E.g. John Doe" class="input-responsive" required>

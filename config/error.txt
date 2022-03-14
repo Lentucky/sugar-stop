@@ -3,3 +3,134 @@ ini_set('display_errors', 1);
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 use this to check errors
+
+<tr>
+                <td><p class=Sales-size>Select Food: </p></td>
+                <br>
+                <td>
+                    <select name="category" class="Sales-size" id="Sales-name">
+
+                        <?php 
+                            //Create PHP Code to display categories from Database
+                            //1. CReate SQL to get all active categories from database
+                            $sql = "SELECT * FROM tbl_food1 WHERE active='Yes'";
+                            
+                            //Executing qUery
+                            $res = mysqli_query($conn, $sql);
+
+                            //Count Rows to check whether we have categories or not
+                            $count = mysqli_num_rows($res);
+
+                            //IF count is greater than zero, we have categories else we donot have categories
+                            if($count>0)
+                            {
+                                //WE have categories
+                                while($row=mysqli_fetch_assoc($res))
+                                {
+                                    //get the details of categories
+                                    $id = $row['id'];
+                                    $title = $row['title'];
+
+                                    ?>
+
+                                    <option value="<?php echo $id; ?>"><?php echo $title; ?></option>
+
+                                    <?php
+                                }
+                            }
+                            else
+                            {
+                                //WE do not have category
+                                ?>
+                                <option value="0">No Category Found</option>
+                                <?php
+                            }
+                        
+
+                            //2. Display on Drpopdown
+                        ?>
+
+
+                    </select>
+                </td>
+            </tr>
+
+ <?php 
+                        if(isset($_GET['from_date']) && isset($_GET['to_date']))
+                        {
+                            $from_date = $_GET['from_date'];
+                            $to_date = $_GET['to_date'];
+
+                            //Display all the categories that are active
+                            //Sql Query
+                            $sql = "SELECT * FROM tbl_order1 WHERE order_date BETWEEN '$from_date' AND '$to_date' ";
+
+                            //Execute the query
+                            $res = mysqli_query($conn, $sql);
+
+                            //Count the rows
+                            $count = mysqli_num_rows($res);
+
+                            //Check whether the categories are available or not
+                            if($count>0)
+                            {
+                                //Categories available
+                                while($row=mysqli_fetch_assoc($res))
+                                {
+                                    //Get the values
+                                    $id = $row['id'];
+                                    $food = $row['food'];
+                                    $price = $row['price'];
+
+                                    //Display values
+                                    ?>
+
+                                    <tr>
+                                            <td><?php echo $sn++;?></td>
+                                            <td><?php echo $food; ?></td>
+                                            <td><?php echo $price; ?></td>
+                                    </tr>
+
+                                    <?php
+
+                                }
+                            }
+                            else
+                            {
+                                //Categories not available
+                                echo "<div class='error'>Category not found</div>";
+                            }
+
+                        }
+
+                    ?>
+
+
+<?php 
+    if(isset($_GET['from_date']) && isset($_GET['to_date']))
+    {
+        $from_date = $_GET['from_date'];
+        $to_date = $_GET['to_date'];
+
+        $query = "SELECT * FROM tbl_order1 WHERE order_date BETWEEN '$from_date' AND '$to_date' ";
+        $query_run = mysqli_query($conn, $query);
+
+        if(mysqli_num_rows($query_run) > 0)
+        {
+            foreach($query_run as $row)
+            {
+                ?>
+                <tr>
+                    <td><?= $row['id']; ?></td>
+                    <td><?= $row['food']; ?></td>
+                    <td><?= $row['price']; ?></td>
+                </tr>
+                <?php
+            }
+        }
+        else
+        {
+            echo "No Record Found";
+        }
+    }
+?>
