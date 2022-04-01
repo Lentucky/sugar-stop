@@ -1,5 +1,14 @@
 <?php include('partials-front/menu.php'); ?>
 <?php include('partials-front/login-check.php'); ?>
+<?php 
+require 'config/PHPMailer.php';
+require 'config/SMTP.php';
+require 'config/Exception.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+?>
 <?php ob_start(); ?>
 
     <?php 
@@ -163,6 +172,43 @@
                         <span style='color: #ec217b'>$food</span> is now being prepared! Please check your E-mail or Text Messages for further information!
                         </div>";
                         header('location:'.SITEURL);
+
+                        //sending an email or define name spaces
+                        //create instance of phpmailer
+                        $mail = new PHPMailer();
+                        //set mailer to use smtp
+                        $mail->isSMTP();
+                        //define smtp host
+                        $mail->Host = "smtp.gmail.com";
+                        //enable smtp authetication
+                        $mail->SMTPAuth = "true";
+                        //set type of encryption (ssl/tls)
+                        $mail->SMTPSecure = "tls";
+                        //set port to connect smtp
+                        $mail->Port = "587";
+                        //set gmail username
+                        $mail->Username = "sugarstopsanpedro@gmail.com";
+                        //set gmail password
+                        $mail->Password = "sugarstopcookies";
+                        //set email subject
+                        $mail->Subject = "SugarStop Order Confirmation";
+                        //set sender email
+                        $mail->setFrom("sugarstopsanpedro@gmail.com");
+                        //email body
+                        $mail->Body = "Hello we would like to confirm that your order is being prepared! If the phone number you have set on our order page is working, you will be sent an SMS on the location of the delivery.
+                                        
+                        Thank you for ordering at SugarStop San Pedro!";
+                        //add recipient
+                        $mail->addAddress($customer_email);
+                        //finally send email
+                        if ($mail->Send() ){
+                            echo "Email Sent..!";
+                        }else{
+                            echo "Error";
+                        }
+                        //closing smtp connection
+                        $mail->smtpClose();
+
                         ob_end_flush(); 
                     }
                     else

@@ -20,7 +20,7 @@
         //Create Session Varaible to Display Message
         $_SESSION['delete-user'] = "<div class='success'>Customer Deleted Succesfully.</div>";
         //Redirect to manage admin page
-        header('location:'.SITEURL.'admin/manage-admin.php');
+        header('location:'.SITEURL.'admin/manage-users.php');
     }
     else
     {
@@ -28,7 +28,7 @@
         //echo "Failed to delete Admin";
 
         $_SESSION['delete-user'] = "<div class='error'>Failed to delete Customer, try again later.</div>";
-        header('location:'.SITEURL.'admin/manage-admin.php');
+        header('location:'.SITEURL.'admin/manage-users.php');
     }
 
     //3.Redirect to manage admin page with messages (success/error)
